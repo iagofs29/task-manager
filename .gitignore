@@ -3,10 +3,6 @@
 # ==================================================
 
 *.class
-*.jar
-*.war
-*.ear
-*.nar
 hs_err_pid*
 replay_pid*
 
@@ -24,6 +20,12 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
+# No ignorar:
+# pom.xml
+# mvnw
+# mvnw.cmd
+# .mvn/
+
 # ==================================================
 # Gradle
 # ==================================================
@@ -33,30 +35,12 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 
 # ==================================================
-# Spring Boot
-# ==================================================
-
-*.log
-logs/
-
-# Configuración local y secretos
-.env
-.env.*
-!.env.example
-
-application-local.properties
-application-local.yml
-application-local.yaml
-
-application-secret.properties
-application-secret.yml
-application-secret.yaml
-
-# ==================================================
 # Datos generados por la aplicación
 # ==================================================
 
-data/
+/data/
+/src/main/data/
+tasks.json
 
 # ==================================================
 # Visual Studio Code
@@ -85,14 +69,32 @@ out/
 bin/
 
 # ==================================================
-# NetBeans
+# Spring Boot: archivos locales y secretos
 # ==================================================
 
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+.env
+.env.*
+!.env.example
+
+application-local.properties
+application-local.yml
+application-local.yaml
+
+application-secret.properties
+application-secret.yml
+application-secret.yaml
+
+# ==================================================
+# Logs y temporales
+# ==================================================
+
+*.log
+logs/
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
 
 # ==================================================
 # macOS
@@ -110,20 +112,8 @@ Icon?
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
-
-# Carpetas creadas en recursos compartidos de macOS
 .AppleDB
 .AppleDesktop
 Network Trash Folder
 Temporary Items
 .apdisk
-
-# ==================================================
-# Archivos temporales
-# ==================================================
-
-*.tmp
-*.temp
-*.swp
-*.swo
-*~

@@ -45,7 +45,7 @@ public class JsonTaskRepository implements TaskRepository{
             throw new IllegalArgumentException("\n* Error: must specify a name for the file.\n");
         }
 
-        if(directory == null){
+        if(directory == null || directory.isBlank()){
             filePath = Path.of(file);
         }else{
             filePath = Path.of(directory, file);

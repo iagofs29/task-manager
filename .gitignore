@@ -1,0 +1,129 @@
+# ==================================================
+# Java
+# ==================================================
+
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+# ==================================================
+# Maven
+# ==================================================
+
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# ==================================================
+# Gradle
+# ==================================================
+
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# ==================================================
+# Spring Boot
+# ==================================================
+
+*.log
+logs/
+
+# Configuración local y secretos
+.env
+.env.*
+!.env.example
+
+application-local.properties
+application-local.yml
+application-local.yaml
+
+application-secret.properties
+application-secret.yml
+application-secret.yaml
+
+# ==================================================
+# Datos generados por la aplicación
+# ==================================================
+
+data/
+
+# ==================================================
+# Visual Studio Code
+# ==================================================
+
+.vscode/
+.history/
+
+# ==================================================
+# IntelliJ IDEA
+# ==================================================
+
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# ==================================================
+# Eclipse
+# ==================================================
+
+.classpath
+.project
+.settings/
+bin/
+
+# ==================================================
+# NetBeans
+# ==================================================
+
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# ==================================================
+# macOS
+# ==================================================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Carpetas creadas en recursos compartidos de macOS
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# ==================================================
+# Archivos temporales
+# ==================================================
+
+*.tmp
+*.temp
+*.swp
+*.swo
+*~

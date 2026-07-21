@@ -3,6 +3,7 @@ import taskmanager.models.Task;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.google.gson.reflect.TypeToken;
 
 import java.nio.file.Files;
@@ -105,6 +106,8 @@ public class JsonTaskRepository implements TaskRepository{
             gson.toJson(taskList, writer);
         }catch(IOException e){
             throw new UncheckedIOException("* Error: unable to open file.", e);
+        }catch(JsonIOException e){
+            throw new JsonIOException("* Error: JSON problem writing to the writer");
         }
     }
 }

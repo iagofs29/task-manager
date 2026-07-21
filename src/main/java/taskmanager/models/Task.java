@@ -65,7 +65,7 @@ public class Task {
 
     @Override
     public String toString(){
-        return "Title: " + this.getTitle() + "\n" + "Description: " + this.getDescription() + "\n" +
+        return "ID: " + getId() + "\n" + "Title: " + this.getTitle() + "\n" + "Description: " + this.getDescription() + "\n" +
                 "Status: " + this.getStatus() + "\n" + "Creation Date: " + this.GetCreationDate() + "\n";
     }
 }

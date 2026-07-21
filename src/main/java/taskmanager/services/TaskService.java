@@ -3,7 +3,6 @@ package taskmanager.services;
 import taskmanager.repository.TaskRepository;
 import taskmanager.models.*;
 
-import java.io.UncheckedIOException;
 import java.util.List;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -49,7 +48,11 @@ public class TaskService {
         return false;
     }
 
-    private Task findById(long id){     // Preconditions: id must be a valid ID within the task list.
+    public boolean isEmptyList(){
+        return taskList.isEmpty();
+    }
+
+    private Task findById(long id){     // Preconditions: 'id' must be a valid ID within the task list.
 
         for(Task task : taskList){
             if(task.getId() == id){
@@ -81,6 +84,27 @@ public class TaskService {
         desiredTask.setUpdateTime(now.format(formatter));
 
         this.repository.saveAll(taskList);
+    }
+
+    public void deleteTask(long id){
+        Task desiredTask = this.findById(id);
+
+        taskList.remove(desiredTask);
+        this.repository.saveAll(taskList);
+    }
+
+    public void showTaskList(boolean filtered, TaskStatus statusFilter){
+        if(!filtered){
+            for(Task task : taskList){
+                System.out.println(task);
+            }
+        }else{
+            for(Task task : taskList){
+                if(task.getStatus() == statusFilter){
+                    System.out.println(task);
+                }
+            }
+        }
     }
 
 }

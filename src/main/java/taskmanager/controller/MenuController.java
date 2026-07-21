@@ -1,6 +1,8 @@
 package taskmanager.controller;
 import java.util.Scanner;
-import java.io.IOException;
+
+import com.google.gson.JsonIOException;
+
 import java.io.UncheckedIOException;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -66,8 +68,13 @@ public class MenuController {
                         tempStatus = 4;
                     }
                 }while(tempStatus != 1 && tempStatus != 2 && tempStatus != 3);
-
-                taskService.createTask(title, description, status);
+                try{
+                    taskService.createTask(title, description, status);
+                }catch(JsonIOException e){
+                    System.out.println(e.getMessage());
+                }catch(UncheckedIOException | IllegalArgumentException e){
+                    System.out.println(e.getMessage());
+                }
                 break;
             
             case 2:
@@ -135,6 +142,8 @@ public class MenuController {
                             System.out.println("+ Saved modified task succesfully.");
                         }catch(UncheckedIOException | IllegalArgumentException e){
                             System.out.println(e.getMessage());
+                        }catch(JsonIOException e){
+                            System.out.println(e.getMessage());
                         }
                         break;
                     case 3:
@@ -162,12 +171,51 @@ public class MenuController {
                             System.out.println("+ Saved modified task succesfully.");
                         }catch(UncheckedIOException | IllegalArgumentException e){
                             System.out.println(e.getMessage());
+                        }catch(JsonIOException e){
+                            System.out.println(e.getMessage());
                         }
                         break;
                 }
             case 3:
-                
-        
-            }
+                long idDel = 0;
+                boolean validIdInputDel = false;
+                if(!taskService.isEmptyList()){
+                    do{
+                        try{
+                            System.out.print("Type the ID of the task you would like to delete: ");
+                            idDel = scanner.nextLong();
+                            scanner.nextLine();
+                            if(idDel < 1 || !taskService.existsById(idDel)){
+                                System.out.println("* Error: invalid ID");
+                            }else{
+                                validIdInputDel = true;
+                            }
+                        }catch(InputMismatchException e){
+                            System.out.println("* Error: you must type an Integer number.");
+                        }
+                    }while(!validIdInputDel);
+                    
+                    try{
+                        taskService.deleteTask(idDel);
+                        System.out.println("+ Succesfully saved new list.");
+                    }catch(UncheckedIOException | IllegalArgumentException e){
+                        System.out.println(e.getMessage());
+                    }catch(JsonIOException e){
+                        System.out.println(e.getMessage());
+                    }
+                }else{
+                    System.out.println("\n* Cannot delete any task due to list being empty.\n");
+                }
+                break;
+            case 4:
+                if(!taskService.isEmptyList()){
+                    taskService.showTaskList(false, null);
+                }else{
+                    System.out.println("\nNo tasks avaliable\n");
+                }
+                System.out.println("Press enter to continue.");
+                scanner.nextLine();
+                break;
+        }
     }
 }

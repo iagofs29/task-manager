@@ -107,7 +107,7 @@ public class JsonTaskRepository implements TaskRepository{
         }catch(IOException e){
             throw new UncheckedIOException("* Error: unable to open file.", e);
         }catch(JsonIOException e){
-            throw new JsonIOException("* Error: JSON problem writing to the writer");
+            throw new JsonIOException("* Error: JSON problem writing to the writer", e);
         }
     }
 }

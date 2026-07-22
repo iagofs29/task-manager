@@ -1,5 +1,6 @@
 package taskmanager;
 
+import taskmanager.console.ConsoleInput;
 import taskmanager.controller.MenuController;
 import taskmanager.controller.StartupController;
 import taskmanager.repository.*;
@@ -13,7 +14,8 @@ public class Main {
         StartupController startController = new StartupController(scanner);
         TaskRepository repository = startController.configureRepository();
         TaskService service = new TaskService(repository);
-        MenuController menuController = new MenuController(scanner, service);
+        ConsoleInput consoleInput = new ConsoleInput(scanner);
+        MenuController menuController = new MenuController(scanner, service, consoleInput);
 
         while(true){
             menuController.printMenu();

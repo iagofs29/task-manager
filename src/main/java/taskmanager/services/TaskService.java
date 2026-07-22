@@ -10,18 +10,18 @@ import java.time.format.DateTimeFormatter;
 public class TaskService {
     private final TaskRepository repository;
     private final List<Task> taskList;
-    private long nextId;
+    private int nextId;
 
     public TaskService(TaskRepository repository){
         this.repository = repository;
         this.taskList = repository.loadAll();
-        this.nextId = this.getMaxId(taskList);
+        this.nextId = this.getMaxId();
     }
 
-    private long getMaxId(List<Task> taskList){
-        long maxID = 0;
+    public int getMaxId(){
+        int maxID = 0;
 
-        for(Task task : taskList){
+        for(Task task : this.taskList){
             if(task.getId() > maxID){
                 maxID = task.getId();
             }
@@ -29,23 +29,8 @@ public class TaskService {
         return maxID + 1;
     }
 
-    public void createTask(String title, String description, TaskStatus status){
-        Task task = new Task(nextId, title, description, status);
-        this.nextId++;
-        System.out.println("Task created succesfully with ID: " + task.getId());
-        
-        taskList.add(task);
-        repository.saveAll(taskList);
-        System.out.println("Task saved succesfully in json file.");
-    }
-
-    public boolean existsById(long id){
-        for(Task task : taskList){
-            if(task.getId() == id){
-                return true;
-            }
-        }
-        return false;
+    public int getMinId(){
+        return taskList.get(0).getId();
     }
 
     public boolean isEmptyList(){
@@ -61,6 +46,25 @@ public class TaskService {
         }
         throw new IllegalArgumentException("* Error: could not find task by ID.");
     }
+
+    public boolean existsById(long id){
+        for(Task task : taskList){
+            if(task.getId() == id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void createTask(String title, String description, TaskStatus status){
+        Task task = new Task(nextId, title, description, status);
+        this.nextId++;
+        
+        taskList.add(task);
+        repository.saveAll(taskList);
+        System.out.println("Task created succesfully with ID: " + task.getId());
+    }
+
 
     public void modifyTask(long id, int fieldToMod, String newText, TaskStatus taskStatus){    // fieldToMod: desired field to modify
 

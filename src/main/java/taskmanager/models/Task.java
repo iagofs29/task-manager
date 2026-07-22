@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Task {
-    private long id;
+    private int id;
     private String title;
     private String description;
     private TaskStatus status;
     private String createdAt;
     private String updatedAt;
 
-    public Task(long id, String title, String description, TaskStatus status){
+    public Task(int id, String title, String description, TaskStatus status){
         this.id = id;
         this.title = title;
         this.description = description;
@@ -23,7 +23,7 @@ public class Task {
         this.updatedAt = "";
     }
 
-    public long getId(){
+    public int getId(){
         return this.id;
     }
     
